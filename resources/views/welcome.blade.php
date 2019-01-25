@@ -16,7 +16,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="navbar-brand" href="#">Kavágép Automata</a>
             </div>
         </nav>
 
@@ -27,7 +27,7 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-5">
             <div class="container justify-content-center">
-                <span class="text-white text-center pt-3 pb-3">Copyright © 2016 - Minden jog fenntartva.</span>
+                <span class="text-white text-center pt-3 pb-3">Copyright © 2019 - Minden jog fenntartva.</span>
             </div>
         </nav>
     

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Filling;
 use App\Machine;
+use App\Service;
 use App\Ingredient;
 use Illuminate\Console\Command;
 
@@ -75,6 +76,10 @@ class AddIngredient extends Command
     {
         $machine->update([ 'is_service' => $machine->is_service == 0 ? 1 : 0 ]);
         $message = $machine->is_service == 0 ? ' újra üzemel!' : ' szervíz üzemmódba került!';
+        Service::create([
+            'machine_id' => $machine->id,
+            'service_at' => now()
+        ]);
         $this->info($machine->name . $message);
     }
 
