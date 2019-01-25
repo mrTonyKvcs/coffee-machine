@@ -54,7 +54,7 @@ Termék vásárlása
 php artisan coffee:order
 ```
 
-## API-k
+## API
 Machine id-ja alapján megkapjuk az adott gépet és figyelembe véve a tárolók állapotát az elkészíthető termékeket
 ```bash
 GET /api/machines/{machine_id}
