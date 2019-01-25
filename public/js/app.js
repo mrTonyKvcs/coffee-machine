@@ -1851,8 +1851,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1861,8 +1859,7 @@ __webpack_require__.r(__webpack_exports__);
       orderMsg: "",
       orderErrorMsg: "",
       chooseProductMsg: "Válassz egy terméket!",
-      errorProductMsg: "Jelenleg egyik termékünk sem rendelhető!",
-      machineStatus: ""
+      errorProductMsg: "Jelenleg egyik termékünk sem rendelhető!"
     };
   },
   created: function created() {
@@ -1882,6 +1879,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/machines/1').then(function (response) {
         _this.machine = response.data;
+
+        if (_this.products.lenth > 0) {
+          _this.errorProductMsg = "";
+        }
       }).catch(function (error) {
         console.log(error);
         _this.errored = true;
@@ -1891,13 +1892,11 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       if (!this.buying) {
-        axios.post('/api/order-product/1/' + id).then(function (response) {
+        axios.post('/api/order-product/1/' + id).then(function () {
           _this2.orderMsg = 'Elkészült a(z) ' + name + ', óvatosan mert forró! Egészségedre!';
+          _this2.buying = true;
 
           _this2.getMachine();
-
-          _this2.buying = true;
-          _this2.errorProductMsg = "";
         }).catch(function (error) {
           console.log(error);
           _this2.errored = true;
@@ -1909,6 +1908,7 @@ __webpack_require__.r(__webpack_exports__);
     finishedOrder: function finishedOrder() {
       this.buying = !this.buying;
       this.orderErrorMsg = "";
+      this.products;
     }
   }
 });
@@ -2494,27 +2494,27 @@ var render = function() {
                       ]
                     )
                   ])
-                : _c("div", { staticClass: "col-md-12" }, [
-                    _vm.errorProductMsg
-                      ? _c("div", [
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "alert alert-danger text-center text-uppercase",
-                              attrs: { role: "alert" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(_vm.errorProductMsg) +
-                                  "\n                "
-                              )
-                            ]
-                          )
-                        ])
-                      : _vm._e()
-                  ]),
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.products.length === 0
+                ? _c("div", { staticClass: "col-md-12" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "alert alert-danger text-center text-uppercase",
+                        attrs: { role: "alert" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.errorProductMsg) +
+                            "\n            "
+                        )
+                      ]
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _vm._l(_vm.products, function(product) {
                 return _vm.products != null

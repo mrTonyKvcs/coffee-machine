@@ -26,11 +26,9 @@
                     {{ chooseProductMsg }}
                 </div>
             </div>
-            <div v-else class="col-md-12">
-                <div v-if="errorProductMsg">
-                    <div class="alert alert-danger text-center text-uppercase" role="alert">
-                        {{ errorProductMsg }}
-                    </div>
+            <div v-if="products.length === 0" class="col-md-12">
+                <div class="alert alert-danger text-center text-uppercase" role="alert">
+                    {{ errorProductMsg }}
                 </div>
             </div>
             <div v-if="products != null" v-for="product in products" class="col-md-12">
@@ -98,7 +96,6 @@
                 orderErrorMsg: "",
                 chooseProductMsg: "Válassz egy terméket!",
                 errorProductMsg: "Jelenleg egyik termékünk sem rendelhető!",
-                machineStatus: ""
             }
         },
 
@@ -120,6 +117,10 @@
                 axios.get('/api/machines/1')
                     .then(response => {
                         this.machine = response.data
+
+                        if (this.products.lenth > 0) {
+                            this.errorProductMsg = ""
+                        }
                     })
                     .catch(error => {
                         console.log(error)
@@ -129,11 +130,10 @@
             orderProduct (id, name) {
                 if (!this.buying) {
                     axios.post('/api/order-product/1/' + id)
-                        .then(response => {
+                        .then(() => {
                             this.orderMsg = 'Elkészült a(z) ' + name + ', óvatosan mert forró! Egészségedre!'
-                            this.getMachine()
                             this.buying = true
-                            this.errorProductMsg = ""
+                            this.getMachine()
                         })
                         .catch(error => {
                             console.log(error)
@@ -147,6 +147,7 @@
             finishedOrder () {
                 this.buying = !this.buying
                 this.orderErrorMsg = ""
+                this.products
             }
         }
     }
