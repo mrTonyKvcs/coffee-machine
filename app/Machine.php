@@ -33,8 +33,8 @@ class Machine extends Model
      */
     public function ingredients()
     {
-        return $this->belongsToMany(Ingredient::class);
-            //->withPivot('in_stock');
+        return $this->belongsToMany(Ingredient::class)
+            ->withPivot('in_stock');
     }
 
     /**

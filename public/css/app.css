@@ -10499,14 +10499,44 @@ h2 {
   margin-bottom: 0;
 }
 
-svg {
-  width: 100%;
-  height: auto;
+.bg-claret {
+  background-color: #781e0e;
+}
+
+.btn {
+  border-radius: 0px;
+  font-size: 18px;
+  margin: 0px 16px;
+  text-transform: uppercase;
+}
+
+.btn-claret {
+  background-color: #781e0e;
+  color: #fff;
+  transition-duration: 0.4s;
+  transition-timing-function: ease-in;
+  -webkit-transition-duration: 0.4s;
+  -webkit-transition-timing-function: ease-in;
+}
+
+.btn-claret:hover {
+  background-color: #fff;
+  border: 1px solid #781e0e;
+  color: #781e0e;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.row {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .c-product {
-  background-image: url("/images/product-background.png");
-  color: #fff;
+  background-color: #fff;
+  color: #781e0e;
   cursor: pointer;
   margin-bottom: 25px;
 }
@@ -10519,20 +10549,8 @@ svg {
 }
 
 .c-product__overlay:hover {
-  background: rgba(255, 255, 255, 0.7);
-  color: #000;
-}
-
-p {
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  position: absolute;
-  top: 57%;
-  left: 49%;
-  font-family: Fredoka One;
-  font-size: 25px;
-  color: transparent;
-  text-shadow: -1px -1px 0 #A31919, -1px 1px 0 #7b0000, 1px -1px 0 #7b0000, 1px 1px 0 #7b0000;
+  background: #781e0e;
+  color: #fff;
 }
 
 /* ANIMATE LIQUID FILL */

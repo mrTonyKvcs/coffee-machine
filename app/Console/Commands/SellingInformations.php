@@ -59,28 +59,38 @@ class SellingInformations extends Command
 
         $sumIngredients = [];
 
-        foreach($usedIngredients as $ingredients) {
-            foreach($ingredients as $key => $value) {
-                if (isset($sumIngredients[$key])) {
-                    $sumIngredients[$key] += $value;
-                } else {
-                    $sumIngredients[$key] = $value;
+        if(isset($usedIngredients)) {
+            foreach($usedIngredients as $ingredients) {
+                foreach($ingredients as $key => $value) {
+                    if (isset($sumIngredients[$key])) {
+                        $sumIngredients[$key] += $value;
+                    } else {
+                        $sumIngredients[$key] = $value;
+                    }
                 }
             }
         }
 
 
-        $this->line("\n $machine->name utolsó szervizelése óta eladott termékek alapanyagai:");
+        if ($sumIngredients) {
+            $this->line("\n $machine->name utolsó szervizelése óta eladott termékek alapanyagai:");
 
-        foreach($sumIngredients as $name => $quantity) {
-            $this->info("$name: $quantity egység");
+            foreach($sumIngredients as $name => $quantity) {
+                $this->info("$name: $quantity egység");
+            }
         }
 
-        $this->line("\n $machine->name utolsó szervizelése óta eladott termékek:");
 
-        $headers = ['Neve', 'Mennyiség(db)'];
+        if( isset($selling) ) { 
+            $this->line("\n $machine->name utolsó szervizelése óta eladott termékek:");
 
-        $this->table($headers, $selling);
+            $headers = ['Neve', 'Mennyiség(db)'];
+
+            $this->table($headers, $selling);
+        }
+        else {
+            $this->info("Nincs eladott termék");
+        }
     }
 
     /**

@@ -6,7 +6,7 @@ class MachinesTableSeeder extends Seeder
 {
     protected $machines = [
         [
-            'name' => 'Brightly Coffee Machine'
+            'name' => 'Brightly Kávégép'
         ]
     ];
 
